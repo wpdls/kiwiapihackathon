@@ -16,8 +16,7 @@ export default class ClassApp extends React.Component {
         flyFrom: "",
         to: "LGW",
         partner: "picky"
-      },
-      
+      }, 
     };
   }
 
