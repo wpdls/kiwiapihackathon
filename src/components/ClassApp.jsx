@@ -1,6 +1,6 @@
 import React from "react";
 import { DateTime } from "luxon";
-import { Container, Row, Col, Card } from "reactstrap";
+import { Container, Row, Col, Card, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 import DropDownDeparture from "./DropDownDeparture.jsx";
@@ -13,15 +13,19 @@ export default class ClassApp extends React.Component {
       flights: [],
 
       searchParams: {
-        flyFrom: "",
-        to: "LGW",
+        fly_from: "",
+        fly_to: "LGW",
         partner: "picky"
       }, 
     };
   }
 
   componentDidMount() {
-    const params = new URLSearchParams(this.state.searchParams);
+    this.callAPI(this.state.searchParams);
+  }
+
+  callAPI = (searchParams) =>{
+    const params = new URLSearchParams(searchParams);
     const url = new URL(`?${params}`, "https://api.skypicker.com/flights");
     fetch(url.href)
       .then(res => res.json())
@@ -32,25 +36,56 @@ export default class ClassApp extends React.Component {
         });
       });
   }
+  setDepartureCode = (code) => {
+      console.log('code', code)
+      this.setState(prevState => ({
+          ...prevState,
+          searchParams: {
+              ...prevState.searchParams,
+              fly_from: code
+          }
+      }))
+  }
 
+  setArrivalCode = (code) => {
+    console.log('code', code)
+    this.setState(prevState => ({
+        ...prevState,
+        searchParams: {
+            ...prevState.searchParams,
+            fly_to: code
+        }
+    }))
+}
+
+  submitHandle = (searchParams) => {
+      this.setState(
+          console.log(this.state.searchParams)
+        // this.callAPI(this.state.searchParams)
+      )
+
+  }
   render() {
 
-    if (!this.state.flights.length) return <h1>Loading... </h1>;
+    if (!this.state.flights.length) return <h1 style={{ padding: '1rem' }}>Loading... </h1>;
 
     return (
-      <div>
+      <div style={{ marginTop: '1rem' }}>
         <Container>
             <Row>
-        <DropDownArrival />
-        <DropDownDeparture />
+        <DropDownArrival setArrivalCode={this.setArrivalCode}/>
+        <DropDownDeparture setDepartureCode={this.setDepartureCode}/>
+        <Button outline color="info" onClick={this.submitHandle}>Submit</Button> {''}
         </Row>
         
           <Row>
+          
             {this.state.flights.map((flight, index) => {
               return (
                 // console.log('detail', flight)
-                <Col key={index}>
-                  <Card>
+                <Col xs="6" sm="4" p="1" style={{ paddingTop: '1rem', paddingBottom: '1rem' }} key={index}>
+                    
+                  <Card style={{ padding: '1rem' }}> 
                     <div>
                       <h1>Flight</h1>
                       <p>
@@ -74,10 +109,14 @@ export default class ClassApp extends React.Component {
                       </p>
                     </div>
                   </Card>
+                  
                 </Col>
+            
               );
             })}
+            
           </Row>
+          
         </Container>
       </div>
     );

@@ -12,13 +12,16 @@ import {
 const DropDown = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTitle, setDropdownTitle] = useState('Arrival');
+  const { setArrivalCode } = props;
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
   // console.log('props', props.cityFrom)
 
-  const handleItemClick = (e) => {
-    setDropdownTitle(e.target.dataset.title)
-  }
+  const handleItemClick = e => {
+    setDropdownTitle(e.target.dataset.title);
+    setArrivalCode(e.target.id)
+  };
+  
 
 
   return (
