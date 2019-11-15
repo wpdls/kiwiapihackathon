@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "luxon": "^1.21.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "reactstrap": "^8.1.1"
   }
 }

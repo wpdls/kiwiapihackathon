@@ -1,5 +1,8 @@
 import React from 'react'
 import { DateTime } from 'luxon';
+// import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+import DropDown from './DropDown.jsx';
 
 export default class ClassApp extends React.Component {
     constructor(props) {
@@ -40,14 +43,19 @@ export default class ClassApp extends React.Component {
             <div>
             {this.state.flights.map((flight, index) => {
                 return (
-                    // console.log('datail', flight)
+
                     
+                    // console.log('datail', flight)
                     <div key={index}>
+                    <DropDown />
+                    <div >
+                        
                     <h1>Flight</h1>
                     <p>{flight.cityFrom} ({flight.flyFrom}) -> {flight.cityTo} ({flight.flyTo})</p>
                     <p>Price: <strong>{`EUR : ${flight.conversion.EUR}`}</strong></p>
                     <p>Departure Time: {DateTime.fromMillis(`${flight.dTime}` * 1000).toFormat('hh:mm')}</p>
                     <p>Arrival Time: {DateTime.fromMillis(`${flight.aTime}` * 1000).toFormat('hh:mm')}</p>
+                    </div>
                     </div>
                 )
             })}
