@@ -11,23 +11,25 @@ import {
 
 const DropDown = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownTitle, setDropdownTitle] = useState('Departure');
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   const handleItemClick = (e) => {
-    console.log('target', e.target.id)
+    setDropdownTitle(e.target.dataset.title)
+    
   }
-  // console.log('props', props.cityFrom)
+
   return (
     <div>
       <Col>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>Departure</DropdownToggle>
+          <DropdownToggle caret>{dropdownTitle}</DropdownToggle>
           <DropdownMenu>
-          <DropdownItem><p onClick={handleItemClick} id="PRG">Prague</p></DropdownItem>
-          <DropdownItem><p onClick={handleItemClick} id="TXL">Berlin</p></DropdownItem>
-          <DropdownItem><p onClick={handleItemClick} id="WAW">Warsaw</p></DropdownItem>
-          <DropdownItem><p onClick={handleItemClick} id="PED">Pardubice</p></DropdownItem>
+          <DropdownItem><p onClick={handleItemClick} id="PRG" data-title="Prague">Prague</p></DropdownItem>
+          <DropdownItem><p onClick={handleItemClick} id="TXL" data-title="Berlin">Berlin</p></DropdownItem>
+          <DropdownItem><p onClick={handleItemClick} id="WAW" data-title="Warsaw">Warsaw</p></DropdownItem>
+          <DropdownItem><p onClick={handleItemClick} id="PED" data-title="Pardubice">Pardubice</p></DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Col>

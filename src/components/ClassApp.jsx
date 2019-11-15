@@ -17,10 +17,7 @@ export default class ClassApp extends React.Component {
         to: "LGW",
         partner: "picky"
       },
-
-      flight: {
-        cityFrom: "Prague"
-      }
+      
     };
   }
 
@@ -38,19 +35,14 @@ export default class ClassApp extends React.Component {
   }
 
   render() {
-    const cityFrom = this.state.flights.map((flight, key) => {
-      // console.log('cityFrom', flight.cityFrom)
-      <div key={key}>{flight.cityFrom}</div>;
-    });
 
-    console.log("city", this.state.cityFrom);
     if (!this.state.flights.length) return <h1>Loading... </h1>;
 
     return (
       <div>
         <Container>
             <Row>
-        <DropDownArrival flights={this.cityFrom} />
+        <DropDownArrival />
         <DropDownDeparture />
         </Row>
         
