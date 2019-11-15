@@ -1,6 +1,7 @@
 import React from 'react'
 import { DateTime } from 'luxon';
-// import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, Row, Col, Card} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import DropDown from './DropDown.jsx';
 
@@ -42,10 +43,15 @@ export default class ClassApp extends React.Component {
         return(
             <div>
                 <DropDown />
-
+                <Container>
+                    <Row>
+                        
+                
                 {this.state.flights.map((flight, index) => {
                     return (
                     // console.log('datail', flight)
+                    <Col>
+                    <Card>
                     <div key={index}>
                     
                     <h1>Flight</h1>
@@ -55,8 +61,13 @@ export default class ClassApp extends React.Component {
                     <p>Arrival Time: {DateTime.fromMillis(`${flight.aTime}` * 1000).toFormat('hh:mm')}</p>
                     
                     </div>
+                    </Card>
+                    </Col>
                     )
                 })}
+                
+                </Row>
+                </Container>
             </div>
         )
     }
