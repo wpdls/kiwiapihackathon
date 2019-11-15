@@ -41,25 +41,22 @@ export default class ClassApp extends React.Component {
         
         return(
             <div>
-            {this.state.flights.map((flight, index) => {
-                return (
+                <DropDown />
 
-                    
+                {this.state.flights.map((flight, index) => {
+                    return (
                     // console.log('datail', flight)
                     <div key={index}>
-                    <DropDown />
-                    <div >
-                        
+                    
                     <h1>Flight</h1>
                     <p>{flight.cityFrom} ({flight.flyFrom}) -> {flight.cityTo} ({flight.flyTo})</p>
                     <p>Price: <strong>{`EUR : ${flight.conversion.EUR}`}</strong></p>
                     <p>Departure Time: {DateTime.fromMillis(`${flight.dTime}` * 1000).toFormat('hh:mm')}</p>
                     <p>Arrival Time: {DateTime.fromMillis(`${flight.aTime}` * 1000).toFormat('hh:mm')}</p>
+                    
                     </div>
-                    </div>
-                )
-            })}
-            
+                    )
+                })}
             </div>
         )
     }
