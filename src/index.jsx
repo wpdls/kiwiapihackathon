@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx'
+import ClassApp from './components/ClassApp.jsx'
 
 import './index.scss';
 import './index.html';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<ClassApp />, document.getElementById('app'));
